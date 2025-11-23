@@ -19,12 +19,12 @@ export const Particles = () => {
   const particlesRef = useRef<Particle[]>([]);
   const mouseRef = useRef({ x: 0, y: 0 });
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-    return undefined;
-  }, []);
+  const [isClient, setIsClient] = useState(() => {
+  if (typeof window !== 'undefined') {
+    return true;
+  }
+  return false;
+});
 
   // Initialize particles
   const initParticles = (width: number, height: number, count: number) => {
