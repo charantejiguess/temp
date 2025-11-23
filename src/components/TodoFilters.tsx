@@ -1,6 +1,6 @@
 'use client';
 
-import { FilterType, FilterTypeValues } from '@/types/todo';
+import { FilterType } from '@/types/todo';
 
 interface TodoFiltersProps {
   currentFilter: FilterType;
