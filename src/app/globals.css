@@ -24,3 +24,120 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Todo Application Styles */
+
+/* Custom scrollbar for todo list */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Glassmorphism utilities */
+.glass {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Slide in animation for tasks */
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Focus styles for accessibility */
+.focus-visible:focus {
+  outline: 2px solid;
+  outline-color: theme('colors.blue.500');
+  outline-offset: 2px;
+}
+
+/* Gradient background for body */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(239, 246, 255, 0.5) 0%,
+    rgba(237, 233, 254, 0.5) 25%,
+    rgba(253, 244, 255, 0.5) 50%,
+    rgba(254, 249, 195, 0.5) 75%,
+    rgba(239, 246, 255, 0.5) 100%
+  );
+  z-index: -1;
+  pointer-events: none;
+}
+
+.dark body::before {
+  background: linear-gradient(
+    135deg,
+    rgba(30, 58, 138, 0.2) 0%,
+    rgba(67, 56, 202, 0.2) 25%,
+    rgba(109, 40, 217, 0.2) 50%,
+    rgba(147, 51, 234, 0.2) 75%,
+    rgba(30, 58, 138, 0.2) 100%
+  );
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-slide-in {
+    animation: none;
+  }
+}
