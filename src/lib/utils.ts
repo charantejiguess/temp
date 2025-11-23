@@ -43,7 +43,7 @@ export const loadTodosFromStorage = (): Todo[] => {
     if (!savedTodos) return [];
 
     const parsedTodos = JSON.parse(savedTodos);
-    return parsedTodos.map((todo: any) => ({
+    return parsedTodos.map((todo: Todo & { createdAt: string }) => ({
       ...todo,
       createdAt: new Date(todo.createdAt)
     }));
