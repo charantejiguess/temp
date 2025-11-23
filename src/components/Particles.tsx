@@ -155,7 +155,7 @@ export const Particles = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [dimensions]);
+  }, [dimensions, isClient]);
 
   // Respect reduced motion preference
   useEffect(() => {
