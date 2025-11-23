@@ -171,6 +171,11 @@ export const Particles = () => {
     }
   }, [isClient]);
 
+  // Don't render on server or when not ready
+  if (!isClient || dimensions.width === 0) {
+    return null;
+  }
+
   return (
     <canvas
       ref={canvasRef}
