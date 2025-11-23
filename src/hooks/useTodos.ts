@@ -18,6 +18,7 @@ export const useTodos = () => {
   useEffect(() => {
     const loadedTodos = loadTodosFromStorage();
     setTodos(loadedTodos);
+    return undefined;
   }, []);
 
   // Save todos to localStorage whenever they change
