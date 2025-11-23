@@ -45,8 +45,10 @@ export const Particles = () => {
     particlesRef.current = particles;
   };
 
-  // Handle resize
+  // Handle resize and mouse movement only on client
   useEffect(() => {
+    if (!isClient) return;
+
     const handleResize = () => {
       const width = window.innerWidth;
       const height = window.innerHeight;
@@ -61,20 +63,19 @@ export const Particles = () => {
       initParticles(width, height, Math.max(particleCount, 10)); // Min 10 particles
     };
 
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
-  // Handle mouse movement
-  useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       mouseRef.current = { x: e.clientX, y: e.clientY };
     };
 
+    handleResize();
+    window.addEventListener('resize', handleResize);
     window.addEventListener('mousemove', handleMouseMove);
-    return () => window.removeEventListener('mousemove', handleMouseMove);
-  }, []);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [isClient]);
 
   // Animation loop
   useEffect(() => {
