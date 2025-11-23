@@ -158,6 +158,8 @@ export const Particles = () => {
 
   // Respect reduced motion preference
   useEffect(() => {
+    if (!isClient) return;
+
     const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 
     if (mediaQuery.matches) {
@@ -167,7 +169,7 @@ export const Particles = () => {
         particle.pulseSpeed = 0;
       });
     }
-  }, []);
+  }, [isClient]);
 
   return (
     <canvas
