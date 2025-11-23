@@ -11,15 +11,13 @@ import {
 } from '@/lib/utils';
 
 export const useTodos = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    if (typeof window !== 'undefined') {
+      return loadTodosFromStorage();
+    }
+    return [];
+  });
   const [filter, setFilter] = useState<FilterType>(FilterType.ALL);
-
-  // Load todos from localStorage on initial render
-  useEffect(() => {
-    const loadedTodos = loadTodosFromStorage();
-    setTodos(loadedTodos);
-    return undefined;
-  }, []);
 
   // Save todos to localStorage whenever they change
   useEffect(() => {
