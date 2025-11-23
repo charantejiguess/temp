@@ -10,5 +10,3 @@ export enum FilterType {
   ACTIVE = "active",
   COMPLETED = "completed"
 }
-
-export type FilterTypeValues = keyof typeof FilterType;
