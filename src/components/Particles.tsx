@@ -124,7 +124,7 @@ export const Particles = () => {
         );
 
         // Dark mode aware colors
-        const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const isDarkMode = isClient && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
         if (isDarkMode) {
           gradient.addColorStop(0, `rgba(59, 130, 246, ${pulseOpacity * 0.3})`); // blue
