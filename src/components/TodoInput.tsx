@@ -25,7 +25,8 @@ export const TodoInput = ({ onAddTodo }: TodoInputProps) => {
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      handleSubmit(e as any);
+      e.preventDefault();
+      handleSubmit(e);
     } else if (e.key === 'Escape') {
       setText('');
       inputRef.current?.blur();
