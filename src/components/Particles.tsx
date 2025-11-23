@@ -23,6 +23,7 @@ export const Particles = () => {
 
   useEffect(() => {
     setIsClient(true);
+    return undefined;
   }, []);
 
   // Initialize particles
